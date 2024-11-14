@@ -5,7 +5,7 @@ from st_on_hover_tabs import on_hover_tabs
 import requests
 from streamlit_lottie import st_lottie
 from PIL import Image
-import streamlit_analytics
+
 import base64
 from streamlit_extras.mention import mention
 from streamlit_extras.app_logo import add_logo
