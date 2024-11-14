@@ -94,7 +94,7 @@ img_CPNTD = Image.open("images/CPNTD.jpg")
 img_TLSV = Image.open("images/TLSV.png")
 # Assets for education
 
-img_HiStart = Image.open("images/histart.png")
+img_HiStart = Image.open("images/HiStart.png")
 img_sgu = Image.open("images/sgu.png")
 img_PS = Image.open("images/AYP.png")
 # Assets for experiences
