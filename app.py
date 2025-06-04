@@ -6,6 +6,7 @@ import requests
 from streamlit_lottie import st_lottie
 from PIL import Image
 
+
 import base64
 from streamlit_extras.mention import mention
 from streamlit_extras.app_logo import add_logo
@@ -13,13 +14,27 @@ import sqlite3
 #from bs4 import BeautifulSoup
 from streamlit_extras.echo_expander import echo_expander
 
-#test
 
 # Set page title
 st.set_page_config(page_title="Portfolio - Việt Long", page_icon = "desktop_computer", layout = "wide", initial_sidebar_state = "auto")
 
 # Use the following line to include your style.css file
 st.markdown('<style>' + open('style.css').read() + '</style>', unsafe_allow_html=True)
+GA_ID = "G-XTDHDLJFN9"
+ga_script = f"""
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', '{GA_ID}');
+</script>
+"""
+st.markdown(ga_script, unsafe_allow_html=True)
+
+# Start tracking analytics
+
 
 def load_lottieurl(url):
     r = requests.get(url)
@@ -1399,3 +1414,5 @@ elif choose == "Volunteering":
 #         experienced by their spouses. In fact, encouraging such role reversals between both
 #         genders would allow mutual understanding of each other's roles, strengthening internal
 #         familial ties in the process.
+
+# At the end of the file, before any other code
