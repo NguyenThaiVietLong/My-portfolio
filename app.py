@@ -87,6 +87,10 @@ img_lh = Image.open("images/middle.jpg")
 img_ifg = Image.open("images/contact.jpg")
 #Assets for competitions
 img_CPNTD = Image.open("images/CPNTD.jpg")
+img_CPNTD2 = Image.open("images/CPNTD2.jpg")
+img_CPNTD3 = Image.open("images/CPNTD3.jpg")
+img_CPNTD4 = Image.open("images/CPNTD4.jpg")
+img_CPNTD5 = Image.open("images/CPNTD5.jpg")
 img_TLSV = Image.open("images/TLSV.png")
 # Assets for education
 
@@ -102,8 +106,25 @@ img_identify = Image.open("images/identify.jpeg")
 img_data = Image.open("images/data.jpeg")
 img_logistics = Image.open("images/logistics.png") 
 img_SGUsp = Image.open("images/SGUsp.png")
+img_SGUsp2 = Image.open("images/SGUsp2.png")
+img_SGUsp3 = Image.open("images/SGUsp3.png")
+img_SGUsp4 = Image.open("images/SGUsp4.png")
+img_SGUsp5 = Image.open("images/SGUsp5.png")
 img_POSodoo = Image.open("images/POSodoo.jpg")
 img_figma = Image.open("images/figma.png")
+
+img_swm = Image.open("images/swm.png")
+img_swm1 = Image.open("images/swm1.png")
+img_swm2 = Image.open("images/swm2.jpg")
+
+img_MyBao = Image.open("images/Project_MyBao.png")
+img_MyBao2 = Image.open("images/Project_MyBao2.png")
+img_MyBao3 = Image.open("images/Project_MyBao3.png")
+img_MyBao4 = Image.open("images/Project_MyBao4.png")
+img_MyBao5 = Image.open("images/Project_MyBao5.png")
+img_MyBao6 = Image.open("images/Project_MyBao6.png")
+
+
 
 
 # Assets for volunteering
@@ -505,9 +526,9 @@ elif choose == "Technical Skills":
         st.markdown("""
         **Tools & Platforms**
         - Jira
-        - Slack
-        - Version Control
-        - Project Tracking
+        - Confluence
+        - Postman
+        - Insomnia
         """)
 
 
@@ -572,100 +593,219 @@ elif choose == "Education":
 
 elif choose == "Projects":
     # Create section for Projects
-    #st.write("---")
     st.header("Projects")
+    
+    # Initialize session state for project visibility if not exists
+    if 'project_visibility' not in st.session_state:
+        st.session_state.project_visibility = {
+            'wms': True,
+            'identify': True,
+            'data': True,
+            'logistics': True,
+            'sgu': True,
+            'pos': True,
+            'mybao': True
+        }
+        
     with st.container():
-        text_column, image_column = st.columns((3,1))
+        text_column, image_column = st.columns((2,2))
         with text_column:
-            st.subheader("Identify Positive and Negative Comments on Youtube")
-            st.write("Self-initiated project using Machine Learning")
-            st.markdown("""
-            - Developed and integrating a machine learning-based data collection system within 2 months, gathering
-            and processing 100,000 data entries for a Steam-based learning model.
-            - Built webscraper using BeautifulSoup4 to scrape content from [Steam](https://store.steampowered.com/)
-            - Aided content creators in identifying channel issues, resulting in a 70% reduction in time spent pinpointing
-            problems.
-            """)
+            col1, col2 = st.columns([4,1])
+            with col1:
+                st.subheader("Modem Diagnostic System")
+                st.write("*December 2024 to Present*")
+            with col2:
+                if st.button("Hide", key="mybao_toggle"):
+                    st.session_state.project_visibility['mybao'] = not st.session_state.project_visibility['mybao']
             
-            # st.write("[Github Repo](https://github.com/harrychangjr/sales-prediction)")
+            if st.session_state.project_visibility['mybao']:
+                
+                st.markdown("""
+                - Automatically diagnose and fix device/network issues.
+                - Configure device settings remotely
+                - View real-time and historical device parameters
+                - Perform remote support actions: (reset PPPoE password, kill active session, reset MAC address, upgrade firmware).
+                """)
+                st.image(img_MyBao2)
+                st.image(img_MyBao3)
+            
         with image_column:
-            st.image(img_identify)
+            if st.session_state.project_visibility['mybao']:
+                st.image(img_MyBao)
+                st.image(img_MyBao5)
+                st.image(img_MyBao4)
+                  
+    
+    with st.container():
+        text_column, image_column = st.columns((2,2))
+        with text_column:
+            col1, col2 = st.columns([4,1])
+            with col1:
+                st.subheader("Warehouse Management System")
+                st.write("*June 2024 to December 2024*")
+            with col2:
+                if st.button("Hide", key="wms_toggle"):
+                    st.session_state.project_visibility['wms'] = not st.session_state.project_visibility['wms']
+            
+            if st.session_state.project_visibility['wms']:
+                
+                st.markdown("""
+                - Digitize warehouse operations to reduce manual work and paperwork.
+                - Enable real-time warehouse management for faster and more accurate decision-making.
+                - Optimize warehouse performance by reducing order processing time and improving labor productivity.
+                - Enhance inventory accuracy, minimizing mistakes in receiving and shipping.
+                """)
+                st.image(img_swm1)
+        with image_column:
+            if st.session_state.project_visibility['wms']:
+                st.image(img_swm)
+                st.image(img_swm2)
+    
     with st.container():
         text_column, image_column = st.columns((3,1))
         with text_column:
-            st.subheader("Data Analytics for Eccomerce Company")
-            st.write("*Self-initiated project base on simulation Eccomerce of Microsoft*")
-            st.markdown("""
-            - Developed and trained machine learning models to forecast Contoso's profit margins, achieving accuracy
-            levels exceeding 90%.
-            - Conducted a thorough analysis of Contoso's financial issues, successfully identifying the root causes of
-            the company's economic situation.
-            - Efficiently processed over 600,000 data entries across 17 columns without data reduction, successfully
-            deploying the enhanced system.
-            """)
-            # st.write("[Github Repo](https://github.com/harrychangjr/sales-prediction)")
-            mention(label="Streamlit App", icon="streamlit", url="https://dataanalysiscontoso.streamlit.app/",)
-            mention(label="Github Repo", icon="github", url="https://github.com/NguyenThaiVietLong/DataAnalysis_Contoso",)
+            col1, col2 = st.columns([4,1])
+            with col1:
+                st.subheader("Identify Positive and Negative Comments on Youtube")
+                st.write("*January 2024 to May 2024*")
+            with col2:
+                if st.button("Hide", key="identify_toggle"):
+                    st.session_state.project_visibility['identify'] = not st.session_state.project_visibility['identify']
+            
+            if st.session_state.project_visibility['identify']:
+                
+                st.markdown("""
+                - Developed and integrating a machine learning-based data collection system within 2 months, gathering
+                and processing 100,000 data entries for a Steam-based learning model.
+                - Built webscraper using BeautifulSoup4 to scrape content from [Steam](https://store.steampowered.com/)
+                - Aided content creators in identifying channel issues, resulting in a 70% reduction in time spent pinpointing
+                problems.
+                """)
         with image_column:
-            st.image(img_data)
+            if st.session_state.project_visibility['identify']:
+                st.image(img_identify)
+
     with st.container():
         text_column, image_column = st.columns((3,1))
         with text_column:
-            st.subheader("Logistic(Economy Express Delivery)")
-            st.write("*Self-initiated project based on delivery app*")
-            st.markdown("""
-            -  Enhanced UI/UX workflows and customer journey mapping, facilitating a comprehensive understanding
-            of the entire system.
-            - Improved workflow visualization and efficiency by creating and documenting BPMN processes.
-            - Developed and implemented a comprehensive Software Requirements Specification (SRS) document,
-            detailing both functional and non-functional requirements, user stories, display rules, and business guide-
-            lines.
-            """)
-            mention(label="Google Drive", icon="📁", url="https://drive.google.com/drive/folders/1-IbxCGRMZ3WJUNiYLS_tCzjQjzM3LWnl?usp=sharing")
-            # st.write("[Github Repo](https://github.com/harrychangjr/sales-prediction)")
+            col1, col2 = st.columns([4,1])
+            with col1:
+                st.subheader("Data Analytics for Eccomerce Company")
+                st.write("*September 2023 to January 2024*")
+            with col2:
+                if st.button("Hide", key="data_toggle"):
+                    st.session_state.project_visibility['data'] = not st.session_state.project_visibility['data']
+            
+            if st.session_state.project_visibility['data']:
+                
+                st.markdown("""
+                - Developed and trained machine learning models to forecast Contoso's profit margins, achieving accuracy
+                levels exceeding 90%.
+                - Conducted a thorough analysis of Contoso's financial issues, successfully identifying the root causes of
+                the company's economic situation.
+                - Efficiently processed over 600,000 data entries across 17 columns without data reduction, successfully
+                deploying the enhanced system.
+                """)
+                mention(label="Streamlit App", icon="streamlit", url="https://dataanalysiscontoso.streamlit.app/",)
+                mention(label="Github Repo", icon="github", url="https://github.com/NguyenThaiVietLong/DataAnalysis_Contoso",)
         with image_column:
-            st.image(img_logistics)
+            if st.session_state.project_visibility['data']:
+                st.image(img_data)
+
     with st.container():
         text_column, image_column = st.columns((3,1))
         with text_column:
-            st.subheader("SGU Student Portal")
-            st.write("*This project was created for a school-level competition, where it ranked in the top 5 finalists.*")
-            st.markdown("""
-            - Developed and launched a prototype application for Saigon University (SGU) students, enhancing their academic and extracurricular engagement by providing instant access to study schedules, academic points, training points, and university event registration.
-            - Implemented a Study Schedule feature, enabling over 10,000 students to efficiently manage their academic calendars and participate in university events.
-            - Created a Study Points module, offering personalized academic guidance to students.
-            - Integrated a Training Points tracking system, allowing students to monitor their extracurricular participation.
-            """)
-            #st.write("[Github Repo](https://github.com/harrychangjr/sp1541-nlp)")
-            mention(label="Figma App",icon ='📱', url="https://figmashort.link/G8akP4",)
+            col1, col2 = st.columns([4,1])
+            with col1:
+                st.subheader("Logistic(Economy Express Delivery)")
+                st.write("*April 2023 to October 2024*")
+            with col2:
+                if st.button("Hide", key="logistics_toggle"):
+                    st.session_state.project_visibility['logistics'] = not st.session_state.project_visibility['logistics']
+            
+            if st.session_state.project_visibility['logistics']:
+                
+                st.markdown("""
+                -  Enhanced UI/UX workflows and customer journey mapping, facilitating a comprehensive understanding
+                of the entire system.
+                - Improved workflow visualization and efficiency by creating and documenting BPMN processes.
+                - Developed and implemented a comprehensive Software Requirements Specification (SRS) document,
+                detailing both functional and non-functional requirements, user stories, display rules, and business guide-
+                lines.
+                """)
+                mention(label="Google Drive", icon="📁", url="https://drive.google.com/drive/folders/1-IbxCGRMZ3WJUNiYLS_tCzjQjzM3LWnl?usp=sharing")
         with image_column:
-            st.image(img_SGUsp)
+            if st.session_state.project_visibility['logistics']:
+                st.image(img_logistics)
+
+    with st.container():
+        text_column, image_column = st.columns((3,3))
+        with text_column:
+            col1, col2 = st.columns([4,1])
+            with col1:
+                st.subheader("SGU Student Portal")
+                st.write("*January 2023 to May 2023*")
+                
+            with col2:
+                if st.button("Hide", key="sgu_toggle"):
+                    st.session_state.project_visibility['sgu'] = not st.session_state.project_visibility['sgu']
+            
+            if st.session_state.project_visibility['sgu']:
+                
+                st.markdown("""
+                - Developed and launched a prototype application for Saigon University (SGU) students, enhancing their academic and extracurricular engagement by providing instant access to study schedules, academic points, training points, and university event registration.
+                - Implemented a Study Schedule feature, enabling over 10,000 students to efficiently manage their academic calendars and participate in university events.
+                - Created a Study Points module, offering personalized academic guidance to students.
+                - Integrated a Training Points tracking system, allowing students to monitor their extracurricular participation.
+                """)
+                mention(label="Figma App",icon ='📱', url="https://figmashort.link/G8akP4",)
+                st.image(img_SGUsp3)
+                st.image(img_SGUsp4)
+        with image_column:
+            if st.session_state.project_visibility['sgu']:
+                st.image(img_SGUsp)
+                st.image(img_SGUsp2)
+                st.image(img_SGUsp5)
+
     with st.container():
         text_column, image_column = st.columns((3,1))
         with text_column:
-            st.subheader("POS System in Odoo")
-            st.write("*Self-initiated project based on Odoo platform*")
-            #st.write("Methods performed on [Kaggle dataset](https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings):")
-            st.markdown("""
-            - Analyzed and documented user functionalities for the ODOO POS module through Use case, enabling customization of POS features for greater flexibility and satisfaction.
-            - Used Activity and Sequence Diagrams to improve system understanding by 60% and integration time for new features by 50% in the ODOO POS system.
-            - Crafted Class Diagrams to illustrate data processing flows and relationships, and developed Entity-Relationship Diagrams (ERDs) to meticulously map out data structures.
-            """)
-            #st.write("[Github Repo](https://github.com/harrychangjr/st4248-termpaper) | [Term Paper](https://github.com/harrychangjr/st4248-termpaper/blob/main/ST4248%20Term%20Paper%20(A0201825N)%20v5.pdf)")
+            col1, col2 = st.columns([4,1])
+            with col1:
+                st.subheader("POS System in Odoo")  
+                st.write("*September 2022 to January 2023*")
+                with col2:
+                    if st.button("Hide", key="pos_toggle"):
+                        st.session_state.project_visibility['pos'] = not st.session_state.project_visibility['pos']
+            
+            if st.session_state.project_visibility['pos']:
+                
+                st.markdown("""
+                - Analyzed and documented user functionalities for the ODOO POS module through Use case, enabling customization of POS features for greater flexibility and satisfaction.
+                - Used Activity and Sequence Diagrams to improve system understanding by 60% and integration time for new features by 50% in the ODOO POS system.
+                - Crafted Class Diagrams to illustrate data processing flows and relationships, and developed Entity-Relationship Diagrams (ERDs) to meticulously map out data structures.
+                """)
         with image_column:
-            st.image(img_POSodoo)
+            if st.session_state.project_visibility['pos']:
+                st.image(img_POSodoo)
 elif choose == "Competitions":
     # Create section for Competitions
     #st.write("---")
     st.header("Competitions")
     with st.container():
-        image_column, text_column = st.columns((1,3))
-        with image_column:
-            st.image(img_CPNTD)
-            #st.empty()
+        text_column,image_column,image_column2  = st.columns((2,3,3))
         with text_column:
             st.subheader("Strategies to Impress Employers - Hosted by [The Student Union of Saigon University](https://www.facebook.com/tuoitredhsaigon)")
             st.write("Achieved a top 5 position in the competition, surpassing over 100 students by excelling in product presentations, personal presentations, CV creation, and answering interview questions.")
+            
+        with image_column:
+            st.image(img_CPNTD4)
+            st.image(img_CPNTD3)
+            #st.empty()
+        with image_column2:
+            st.image(img_CPNTD2)
+            st.image(img_CPNTD5)
+        
     with st.container():
         image_column, text_column = st.columns((1,3))
         with image_column:
