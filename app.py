@@ -26,6 +26,7 @@ GA_ID = "G-XTDHDLJFN9"
 def inject_ga():
     GA_ID = "G-XTDHDLJFN9"
     GA_JS = f"""
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -34,9 +35,8 @@ def inject_ga():
       gtag('config', '{GA_ID}');
     </script>
     """
-    components.html(GA_JS, height=0)
+    st.markdown(GA_JS, unsafe_allow_html=True)
 
-# Gọi hàm này ở đầu ứng dụng
 inject_ga()
 
 # Start tracking analytics
